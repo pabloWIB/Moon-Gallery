@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moongallery.wib.digital/sitemap.xml

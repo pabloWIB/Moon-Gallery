@@ -1,96 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="CSS/normalize.css">
-	<link rel="stylesheet" href="CSS/styles.css">
-	<link rel="stylesheet" href="CSS/fonts.css">
-	<link rel="icon" type="image/x-icon" href="Moon-Gallery.png">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.slim.min.js"></script>
-	<script src="JS/script.js"></script>
-	<title>Space</title>
-</head>
-<body>
-	<header>
-		<article>
-			<div></div>
-			<h1>Space</h1>
-		</article>
-		<aside>
-			<div class="aside-letters">
-				<h2>Gallery</h2>
-			</div>
-			<div class="middle-line"></div>
-			<div class="change-img">
-				<div class="next-img">
-					<span>‹</span>
-				</div>
-				<div class="back-img">
-					<span>›</span>
-				</div>
-			</div>
-		</aside>
-		<div class="header-footer">
-			<div>
-				<h3>Collections</h3>
-			</div>
-			<div>
-				<h4>140 photos</h4>
-			</div>
-		</div>
-	</header>
-	<main>
-		<nav>
-			<div>
-				<h3>Abstract Nature</h3>
-			</div>
-			<div>
-				<h3>Blog</h3>
-			</div>
-			<div class="social">
-				<a href="#" class="media">
-					<img src="IMG/instagram.png" alt="Instagram">
-				</a>
-				<a href="#" class="media">
-					<img src="IMG/linked.png" alt="LinkedIn">
-				</a>
-				<a href="#" class="media">
-					<img src="IMG/rubix.png" alt="Rubix">
-				</a>
-			</div>
-		</nav>
-		<section>
-			<div class="section-left">
-				<div class="cotain-left">
-					<div class="contain-top">
-						<h4>50k+</h4>
-						<div class="orange-line"></div>
-						<p>Travels to interesnting <br> places in order to make <br> new discoveries and photo <br> sessions.</p>
-					</div>
-					<div class="contain-bottom">
-						<h4>14k+</h4>
-						<div class="orange-line"></div>
-						<p>The last journey in <br> search of interesting <br> emotions and abstractionism <br> nature.</p>
-					</div>
-				</div>
-			</div>
-			<div class="section-right">
-				<div class="waves-img">
-					<img src="IMG/photo2.jpg" alt="waves">
-				</div>
-				<p>Photographs that attract <br> attentions.</p>
-			</div>
-		</section>
-		<footer>
-			<div class="footer-left">
-				<h5>02</h5>
-				<p>Most popular <br> spaces</p>
-			</div>
-			<div>
-				<h5>© 2023</h5>
-			</div>
-		</footer>
-	</main>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Moon Gallery — Lunar and abstract nature photography</title>
+    <meta name="description" content="A full-screen photography gallery of three lunar and abstract nature studies. Arrow controls swap the frame in place, with no thumbnails and no lightbox.">
+    <link rel="canonical" href="https://moongallery.wib.digital/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Moon Gallery">
+    <meta property="og:title" content="Moon Gallery — Lunar and abstract nature photography">
+    <meta property="og:description" content="A full-screen photography gallery of three lunar and abstract nature studies. Arrow controls swap the frame in place, with no thumbnails and no lightbox.">
+    <meta property="og:url" content="https://moongallery.wib.digital/">
+    <meta property="og:image" content="https://moongallery.wib.digital/assets/img/og-cover.jpg">
+    <meta property="og:image:alt" content="The moon in warm amber tones against an almost black night sky.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/img/logo/moon-gallery-mark.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+
+    <script defer src="assets/js/modules/gallery.js"></script>
+    <script defer src="assets/js/main.js"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Pablo Nieto Pérez",
+        "url": "https://wib.digital",
+        "jobTitle": "Web Designer and Developer",
+        "sameAs": [
+          "https://www.fiverr.com/pablonietop",
+          "https://www.linkedin.com/in/pablo-nieto-perez-39a530292",
+          "https://github.com/pabloWIB"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="shell">
+      <header class="panel">
+        <h1 class="brand panel__brand">Moon Gallery</h1>
+
+        <div class="panel__body">
+          <p class="display-word" aria-hidden="true">Gallery</p>
+          <div class="panel__rule" aria-hidden="true"></div>
+
+          <div class="controls">
+            <button class="control" type="button" data-step="-1" aria-label="Previous photograph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 5 8 12l7 7" />
+              </svg>
+            </button>
+            <button class="control" type="button" data-step="1" aria-label="Next photograph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m9 5 7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel__meta">
+          <h2 class="collection" id="collection-name">Abstract Nature</h2>
+          <p class="collection__count">3 photos</p>
+        </div>
+      </header>
+
+      <main class="stage">
+        <div class="gallery" data-gallery role="group" aria-roledescription="carousel" aria-labelledby="collection-name">
+          <div class="gallery__slide is-active" data-slide data-title="Moon in Monochrome" data-text="Night sky, grey tones" data-thumb="assets/img/content/moon-monochrome-thumb.webp">
+            <img src="assets/img/content/moon-monochrome.webp" width="1920" height="1280" fetchpriority="high" alt="The moon in greyscale against a black night sky, craters picked out along the shadow line.">
+          </div>
+
+          <div class="gallery__slide" data-slide data-title="Moon in Amber" data-text="Night sky, warm tones" data-thumb="assets/img/content/moon-amber-thumb.webp">
+            <img src="assets/img/content/moon-amber.webp" width="1920" height="1280" loading="lazy" alt="The same moon in warm amber, its lit edge glowing orange against an almost black sky.">
+          </div>
+
+          <div class="gallery__slide" data-slide data-title="Wave Ridges" data-text="Abstract surface, high contrast" data-thumb="assets/img/content/wave-ridges-thumb.webp">
+            <img src="assets/img/content/wave-ridges.webp" width="1920" height="1216" loading="lazy" alt="Close-up of a rippled surface forming parallel wave-like ridges in high-contrast black and white.">
+          </div>
+        </div>
+
+        <div class="stage__overlay">
+          <div class="stage__top">
+            <p class="counter">
+              <span class="counter__current" data-counter-current>01</span>
+              <span class="visually-hidden">of</span>
+              <span aria-hidden="true">/</span>
+              <span data-counter-total>03</span>
+            </p>
+
+            <nav class="social" aria-label="Photographer profiles">
+              <a class="social__link" href="https://www.linkedin.com/in/pablo-nieto-perez-39a530292" rel="noopener" aria-label="Pablo Nieto Pérez on LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                </svg>
+              </a>
+              <a class="social__link" href="https://github.com/pabloWIB" rel="noopener" aria-label="Pablo Nieto Pérez on GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </a>
+            </nav>
+          </div>
+
+          <div class="stage__bottom">
+            <div class="caption" aria-live="polite">
+              <p class="caption__title" data-caption-title>Moon in Monochrome</p>
+              <div class="caption__rule" aria-hidden="true"></div>
+              <p class="caption__text" data-caption-text>Night sky, grey tones</p>
+            </div>
+
+            <div class="stage__aside">
+              <button class="thumb" type="button" data-step="1">
+                <span class="thumb__label">Next photo</span>
+                <span class="thumb__frame">
+                  <img data-thumb-image src="assets/img/content/moon-amber-thumb.webp" width="400" height="267" loading="lazy" alt="">
+                </span>
+              </button>
+
+              <p class="credit">
+                Built by <a href="https://wib.digital" rel="noopener">wib.digital</a> —
+                <a href="https://www.fiverr.com/pablonietop" rel="noopener">hire me on Fiverr</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>

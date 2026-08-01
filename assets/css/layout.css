@@ -1,0 +1,265 @@
+/* ==========================================================================
+   layout.css — application shell, panel, stage
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Shell — mobile first: stage on top, panel bar underneath within thumb reach
+   -------------------------------------------------------------------------- */
+
+.shell {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Panel — brand, gallery controls, collection meta
+   -------------------------------------------------------------------------- */
+
+/* The stage leads in the source order for assistive tech, so both areas are
+   placed explicitly: photograph on top, controls in the bar underneath. */
+.panel {
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "brand body"
+    "meta  meta";
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-panel);
+  color: var(--color-ink);
+  --color-focus: var(--color-panel-rule);
+}
+
+.panel__brand {
+  grid-area: brand;
+}
+
+.panel__body {
+  grid-area: body;
+}
+
+.panel__meta {
+  grid-area: meta;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border-top: var(--rule-thin) solid rgba(38, 38, 38, 0.25);
+  padding-top: var(--space-3);
+}
+
+/* --------------------------------------------------------------------------
+   Stage — the photograph and everything laid over it
+   -------------------------------------------------------------------------- */
+
+.stage {
+  grid-row: 1;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-void);
+  min-height: 0;
+}
+
+/* Scrims exist so the overlay text keeps its contrast over any photograph */
+.stage::before,
+.stage::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stage::before {
+  top: 0;
+  height: 9rem;
+  background: linear-gradient(
+    to bottom,
+    var(--color-scrim) 0%,
+    var(--color-scrim-soft) 40%,
+    transparent 100%
+  );
+}
+
+.stage::after {
+  bottom: 0;
+  height: 13rem;
+  background: linear-gradient(
+    to top,
+    var(--color-scrim) 0%,
+    var(--color-scrim-soft) 25%,
+    transparent 100%
+  );
+}
+
+.stage__overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: var(--space-4);
+  gap: var(--space-4);
+}
+
+.stage__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* Narrow screens stack the caption over the credit; the preview thumbnail is
+   a second route to the next photograph and only appears once there is room */
+.stage__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.stage__aside {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Gallery slides
+   -------------------------------------------------------------------------- */
+
+.gallery {
+  position: absolute;
+  inset: 0;
+}
+
+.gallery__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-slide), visibility var(--transition-slide);
+}
+
+.gallery__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gallery__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --------------------------------------------------------------------------
+   480px — a little more room around the overlay
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 30em) {
+  .stage__overlay {
+    padding: var(--space-5);
+  }
+
+  .panel {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .stage__bottom {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .stage__aside {
+    flex-direction: column;
+    align-items: flex-end;
+    width: auto;
+    flex-shrink: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   768px — panel meta gains its own line, overlay breathes
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 48em) {
+  .stage__overlay {
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .panel {
+    padding: var(--space-4) var(--space-6);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1024px — panel becomes the sidebar the design was drawn for
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 64em) {
+  .shell {
+    grid-template-rows: 1fr;
+    grid-template-columns: minmax(15rem, 27%) 1fr;
+  }
+
+  .panel {
+    grid-column: 1;
+    grid-row: 1;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "brand"
+      "body"
+      "meta";
+    align-content: space-between;
+    align-items: stretch;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .panel__body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 0;
+  }
+
+  .stage {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .stage__overlay {
+    padding: var(--space-5);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1440px — cap the panel so the photograph keeps the room
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 90em) {
+  .shell {
+    grid-template-columns: minmax(15rem, 24%) 1fr;
+  }
+
+  .panel {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .stage__overlay {
+    padding: var(--space-6);
+  }
+}

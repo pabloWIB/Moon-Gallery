@@ -1,200 +1,117 @@
-![image](https://github.com/pabloDYEL/ESTATICA-28/assets/116923433/d54e2c8a-1919-4581-a5fe-e34d9221d02f)
-
 # Moon Gallery
 
-Photography portfolio website showcasing space and nature collections with abstract artistic vision.
+A full-screen photography gallery that swaps the frame in place — no thumbnail strip, no lightbox, no page reload.
 
-## Project Overview
+[![Live demo](https://img.shields.io/badge/demo-moongallery.wib.digital-2ea44f)](https://moongallery.wib.digital)
+[![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
+![Dependencies](https://img.shields.io/badge/npm%20dependencies-0-brightgreen)
+![Build step](https://img.shields.io/badge/build%20step-none-lightgrey)
 
-Moon Gallery is a static photography portfolio website featuring collections of space photography, abstract nature, and travel discoveries. The site presents a curated gallery of photographs that capture interesting emotions and abstract elements in nature.
+## Description
 
-## Technology Stack
+Three photographs — two lunar, one abstract — presented so that nothing on screen competes with them. A light panel carries the wordmark, the collection name and the two controls; the rest of the viewport is the photograph.
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Static website
+The gallery holds a single index. Moving forward or back wraps around, and the counter, the caption and the next-photo preview are all derived from that index rather than stored twice. Photographs are stacked `<img>` elements that cross-fade on opacity, so a transition is a style change and adding a fourth photograph is three lines of HTML.
+
+Below 1024px the panel becomes a bar at the foot of the screen, putting the controls in thumb reach. Above it, the panel is the sidebar the layout was drawn for.
 
 ## Features
 
-- **Photo Collections** - Curated galleries organized by theme
-- **Space Gallery** - Astronomical and space-themed photography
-- **Abstract Nature** - Artistic interpretation of natural elements
-- **Travel Documentation** - Discovery journeys and photo sessions
-- **Blog Integration** - Stories behind the photographs
-- **Responsive Gallery** - Mobile-optimized image viewing
+- Three-photograph rotation with wrap-around in both directions.
+- Counter, caption and next-photo preview driven by one index.
+- Keyboard control with the left and right arrow keys.
+- Clickable preview of the upcoming photograph, shown from 480px up.
+- Mobile-first layout: bottom control bar under 1024px, sidebar above it.
+- No npm dependencies, no build step, no framework.
 
-## Project Structure
+## Tech stack
+
+| Layer | Technology | Role in project |
+|---|---|---|
+| Markup | HTML5 | `index.html` and `404.html` |
+| Styling | CSS3 custom properties | Design tokens in `base.css`, no preprocessor |
+| Scripting | Vanilla JavaScript | 113 lines across one module and one entry point |
+| Images | WebP | Three photographs at 1920px, three previews at 400px |
+| Type | Montserrat, via Google Fonts | Single family, loaded with `preconnect` and `display=swap` |
+
+## Prerequisites
+
+None. `index.html` opens straight from disk — the scripts are classic `defer` scripts rather than ES modules for exactly that reason.
+
+## Running it locally
+
+```bash
+git clone https://github.com/pabloWIB/Moon-Gallery.git
+cd Moon-Gallery
+npx serve .
+```
+
+Or open `index.html` in a browser.
+
+## Project structure
 
 ```
-Moon-Gallery/
-├── index.html              # Main gallery page
-├── collections.html        # Photo collections
-├── blog.html              # Photography blog
-├── css/
-│   ├── gallery.css        # Gallery styles
-│   ├── lightbox.css       # Image viewer
-│   └── responsive.css     # Mobile optimization
-├── js/
-│   ├── gallery.js         # Image gallery functionality
-│   ├── lightbox.js        # Image popup viewer
-│   └── navigation.js      # Collection navigation
+.
+├── index.html                  # The gallery — the whole site
+├── 404.html                    # Not found, links back to the gallery
 ├── assets/
-│   ├── images/
-│   │   ├── space/         # Space photography
-│   │   ├── nature/        # Abstract nature photos
-│   │   └── travel/        # Travel discoveries
-│   └── thumbnails/        # Optimized preview images
-└── README.md              # Documentation
+│   ├── css/
+│   │   ├── base.css            # Design tokens, reset, base typography
+│   │   ├── layout.css          # Shell grid, panel, stage, breakpoints
+│   │   └── components.css      # Brand, controls, counter, caption, preview
+│   ├── js/
+│   │   ├── main.js             # Entry point
+│   │   └── modules/
+│   │       └── gallery.js      # Index, counter, caption, preview
+│   └── img/
+│       ├── content/            # Photographs at 1920px and previews at 400px
+│       ├── logo/               # Favicon and touch icon
+│       └── og-cover.jpg        # Open Graph card, 1200x630
+├── docs/
+│   ├── auditoria.md            # State of the project before the reorganisation
+│   └── cambios.md              # What changed, by phase
+├── robots.txt
+├── sitemap.xml
+└── .gitignore
 ```
 
-## Collections
+## Adding a photograph
 
-### Space Gallery
-High-quality space and astronomical photography capturing celestial beauty and cosmic perspectives.
+Each slide carries its own caption and preview, so the JavaScript needs no edit:
 
-### Abstract Nature
-Artistic interpretation of natural elements focusing on emotions and abstractionism in nature photography.
+```html
+<div class="gallery__slide" data-slide
+     data-title="Title shown in the caption"
+     data-text="Short line under the rule"
+     data-thumb="assets/img/content/name-thumb.webp">
+  <img src="assets/img/content/name.webp" width="1920" height="1280"
+       loading="lazy" alt="What the photograph shows.">
+</div>
+```
 
-### Travel Discoveries
-Documentary photography from journeys to interesting places, showcasing new discoveries and unique perspectives.
+The counter total, the wrap-around and the preview all follow from the number of slides in the DOM. Update the `3 photos` line in the panel to match.
 
-## Statistics
+## Performance
 
-- **140 photos** - Total collection size
-- **50k+ travels** - Extensive journey documentation
-- **14k+ discoveries** - Unique photographic finds
-- **Popular spaces** - Most viewed gallery sections
-
-## Quick Start
-
-### Installation
-
-1. Clone the repository
-   ```bash
-   git clone https://github.com/pabloWIB/Moon-Gallery.git
-   cd Moon-Gallery
-   ```
-
-2. Local development
-   ```bash
-   # Node.js server
-   npx serve .
-   
-   # Or any static file server
-   npx http-server
-   ```
-
-3. Open in browser
-   ```
-   http://localhost:3000
-   ```
-
-## Gallery Features
-
-### Image Navigation
-- Previous/Next navigation arrows
-- Collection-based browsing
-- Thumbnail previews
-- Smooth transitions
-
-### Responsive Design
-- Mobile-optimized layouts
-- Touch-friendly navigation
-- Adaptive image sizing
-- Fast loading thumbnails
-
-### Blog Integration
-- Photography stories
-- Behind-the-scenes content
-- Travel documentation
-- Technical photography insights
+First load is roughly 340KB across 13 requests. The photographs came off the camera at 5472px and 4.8MB in total; at 1920px in WebP they are 279KB.
 
 ## Deployment
 
-### Static Hosting
-- **Netlify** - Automatic deployment from GitHub
-- **Vercel** - Fast global CDN
-- **GitHub Pages** - Free hosting option
+Deployed on Vercel at [moongallery.wib.digital](https://moongallery.wib.digital). Static: upload the repository root as-is, with no build command and no output directory. Point the host's 404 handler at `404.html`.
 
-### Image Optimization
-- Compress images for web delivery
-- Generate thumbnail versions
-- Use appropriate image formats
-- Implement lazy loading
+## Author
 
-## Customization
+**Pablo Nieto Pérez** — [wib.digital](https://wib.digital)
+GitHub: [@pabloWIB](https://github.com/pabloWIB)
 
-### Adding New Photos
-1. Add high-resolution images to appropriate collection folder
-2. Generate thumbnail versions
-3. Update gallery HTML with new image references
-4. Add metadata and descriptions
+---
 
-### Collection Management
-- Organize photos by theme or location
-- Create new collection categories
-- Update navigation menus
-- Maintain consistent naming conventions
+## Hire me
 
-### Styling Updates
-- Modify gallery layouts in CSS
-- Customize lightbox appearance
-- Update color schemes
-- Adjust responsive breakpoints
+I build **custom internal tools, CRMs and dashboards** for small teams, and
+**conversion-focused websites** for businesses.
 
-## Performance Optimization
-
-- **Image Compression** - Optimized file sizes
-- **Lazy Loading** - Load images on demand
-- **Thumbnail Generation** - Fast preview loading
-- **CDN Ready** - Static asset optimization
-
-## Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 11+
-- Edge 16+
-- Mobile Safari and Chrome
-
-## Photography Focus
-
-### Artistic Vision
-Photographs that attract attention through unique perspectives and emotional depth.
-
-### Content Themes
-- **Space and Astronomy** - Celestial photography
-- **Abstract Nature** - Creative natural interpretations  
-- **Travel Documentation** - Discovery and exploration
-- **Emotional Landscapes** - Mood and atmosphere capture
-
-## Technical Features
-
-### Gallery Functionality
-- Image lightbox viewer
-- Collection filtering
-- Navigation controls
-- Social sharing options
-
-### Blog System
-- Photography articles
-- Journey documentation
-- Technical tutorials
-- Artist statements
-
-## Contributing
-
-1. Fork the repository
-2. Add new photographs to appropriate collections
-3. Update gallery metadata
-4. Test image loading and navigation
-5. Submit pull request with photo descriptions
-
-## License
-
-This project is licensed under the MIT License.
-
-## Copyright
-
-© 2023 Moon Gallery. All rights reserved.
+- [Custom internal tool, CRM or dashboard](https://www.fiverr.com/pablonietop/build-a-custom-internal-app-for-your-business) — from $45
+- [Conversion-focused website](https://www.fiverr.com/pablonietop/convert-your-landing-page-design-to-code) — from $80
+- [All my services on Fiverr](https://www.fiverr.com/pablonietop)
+- [wib.digital](https://wib.digital)

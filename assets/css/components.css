@@ -1,0 +1,381 @@
+/* ==========================================================================
+   components.css — brand, controls, counter, caption, thumbnail, links
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Brand
+   -------------------------------------------------------------------------- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.brand::before {
+  content: "";
+  width: var(--space-2);
+  height: var(--space-2);
+  background: var(--color-panel-rule);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Display word — decorative typography, hidden from assistive tech
+   -------------------------------------------------------------------------- */
+
+.display-word {
+  display: none;
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  user-select: none;
+}
+
+.panel__rule {
+  display: none;
+  width: var(--rule-thick);
+  background: var(--color-panel-rule);
+}
+
+/* --------------------------------------------------------------------------
+   Controls
+   -------------------------------------------------------------------------- */
+
+.controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: var(--tap-target);
+  height: var(--tap-target);
+  border: var(--rule-thin) solid transparent;
+  border-radius: var(--radius-full);
+  color: var(--color-ink);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.control:hover {
+  border-color: var(--color-panel-rule);
+}
+
+.control:active {
+  background: var(--color-panel-rule);
+  color: var(--color-panel);
+}
+
+.control svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Collection meta
+   -------------------------------------------------------------------------- */
+
+.collection {
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+}
+
+.collection__count {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Counter
+   -------------------------------------------------------------------------- */
+
+.counter {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-light-soft);
+}
+
+.counter__current {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-light);
+}
+
+/* --------------------------------------------------------------------------
+   Caption
+   -------------------------------------------------------------------------- */
+
+.caption {
+  max-width: 32ch;
+}
+
+.caption__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+}
+
+.caption__rule {
+  width: var(--space-7);
+  height: var(--rule-thick);
+  margin: var(--space-2) 0;
+  background: var(--color-accent);
+}
+
+.caption__text {
+  font-size: var(--text-sm);
+  color: var(--color-light-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Next-photo thumbnail
+   -------------------------------------------------------------------------- */
+
+.thumb {
+  display: none;
+  padding: 0;
+  text-align: right;
+  color: var(--color-light-soft);
+  transition: color var(--transition-fast);
+}
+
+.thumb__label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.thumb__frame {
+  display: block;
+  width: 6rem;
+  border: var(--rule-thin) solid rgba(242, 242, 242, 0.35);
+  box-shadow: var(--shadow-raised);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.thumb__frame img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.thumb:hover {
+  color: var(--color-light);
+}
+
+.thumb:hover .thumb__frame {
+  border-color: var(--color-accent);
+}
+
+.thumb:active .thumb__frame {
+  border-color: var(--color-accent-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Social links
+   -------------------------------------------------------------------------- */
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.social__link {
+  display: grid;
+  place-items: center;
+  width: var(--tap-target);
+  height: var(--tap-target);
+  color: var(--color-light-soft);
+  transition: color var(--transition-fast);
+}
+
+.social__link:hover,
+.social__link:active {
+  color: var(--color-accent);
+}
+
+.social__link svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* --------------------------------------------------------------------------
+   Credit
+   -------------------------------------------------------------------------- */
+
+.credit {
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  color: var(--color-light-soft);
+}
+
+/* Vertical padding on these inline links lifts the pointer target to 44px
+   without disturbing the line box */
+.credit a {
+  padding: var(--space-3) var(--space-1);
+  text-decoration: underline;
+  text-decoration-color: rgba(242, 242, 242, 0.4);
+  text-underline-offset: 0.25em;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
+.credit a:hover,
+.credit a:active {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Not-found page
+   -------------------------------------------------------------------------- */
+
+.notfound {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  height: 100dvh;
+  padding: var(--space-5);
+  text-align: center;
+}
+
+.notfound__code {
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+}
+
+.notfound__title {
+  margin-top: var(--space-3);
+  font-size: var(--text-lg);
+}
+
+.notfound__text {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-light-soft);
+}
+
+.notfound__rule {
+  width: var(--space-7);
+  height: var(--rule-thick);
+  margin: var(--space-4) auto;
+  background: var(--color-accent);
+}
+
+.notfound__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target);
+  padding: 0 var(--space-4);
+  border: var(--rule-thin) solid var(--color-light-soft);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--transition-fast), border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.notfound__link:hover {
+  color: var(--color-void);
+  background: var(--color-light);
+  border-color: var(--color-light);
+}
+
+.notfound__link:active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Utilities
+   -------------------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   480px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 30em) {
+  .thumb {
+    display: block;
+  }
+
+  .credit {
+    text-align: right;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   768px
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 48em) {
+  .thumb__frame {
+    width: 8rem;
+  }
+
+  .caption__title {
+    font-size: var(--text-xl);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1024px — the sidebar composition
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 64em) {
+  .display-word {
+    display: block;
+  }
+
+  .panel__rule {
+    display: block;
+    align-self: stretch;
+    max-height: 17.5rem;
+    justify-self: center;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+
+  .thumb__frame {
+    width: 10rem;
+  }
+}

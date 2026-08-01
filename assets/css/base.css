@@ -1,0 +1,169 @@
+/* ==========================================================================
+   base.css — design tokens, reset, base typography
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Variables
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Colour — derived from the original palette:
+     #dfdfdf panel, #262626 ink, #222222 page, #db993d accent rule */
+  --color-void: #1a1a1a;
+  --color-panel: #dfdfdf;
+  --color-panel-rule: #262626;
+  --color-ink: #262626;
+  --color-ink-soft: #4d4d4d;
+  --color-light: #f2f2f2;
+  --color-light-soft: #c9c9c9;
+  --color-accent: #db993d;
+  --color-accent-strong: #e4902c;
+
+  /* Focus ring. Amber clears 3:1 over the photograph but not over the light
+     panel, so the panel overrides this token with ink. */
+  --color-focus: var(--color-accent-strong);
+  /* Scrim stops are set so overlay text clears 4.5:1 even over the brightest
+     areas of the high-contrast photograph */
+  --color-scrim: rgba(10, 10, 10, 0.9);
+  --color-scrim-soft: rgba(10, 10, 10, 0.7);
+
+  /* Spacing — 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 6rem;
+
+  /* Type */
+  --font-body: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-display: clamp(2.75rem, 5vw, 4rem);
+  --tracking-wide: 0.16em;
+  --tracking-tight: -0.04em;
+  --leading-tight: 1.2;
+  --leading-body: 1.6;
+
+  /* Shape */
+  --radius-sm: 2px;
+  --radius-full: 999px;
+  --rule-thin: 1px;
+  --rule-thick: 2px;
+
+  /* Elevation — used only where a surface must separate from photography */
+  --shadow-raised: 0 2px 12px rgba(0, 0, 0, 0.45);
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slide: 500ms ease;
+
+  /* Minimum touch target */
+  --tap-target: 2.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Reset
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+figure,
+figcaption {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-light);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: var(--leading-tight);
+}
+
+/* Keyboard focus is visible everywhere, on both surfaces */
+:focus-visible {
+  outline: var(--rule-thick) solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(228, 144, 44, 0.75);
+  color: var(--color-light);
+}
+
+img::selection {
+  background: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
