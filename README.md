@@ -2,7 +2,7 @@
 
 A full-screen photography gallery that swaps the frame in place — no thumbnail strip, no lightbox, no page reload.
 
-[![Live demo](https://img.shields.io/badge/demo-moongallery.wib.digital-2ea44f)](https://moongallery.wib.digital)
+[![Live demo](https://img.shields.io/badge/demo-pablowib.github.io/Moon-Gallery-2ea44f)](https://pablowib.github.io/Moon-Gallery)
 [![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
 ![Dependencies](https://img.shields.io/badge/npm%20dependencies-0-brightgreen)
 ![Build step](https://img.shields.io/badge/build%20step-none-lightgrey)
@@ -97,7 +97,7 @@ First load is roughly 340KB across 13 requests. The photographs came off the cam
 
 ## Deployment
 
-Deployed on Vercel at [moongallery.wib.digital](https://moongallery.wib.digital). Static: upload the repository root as-is, with no build command and no output directory. Point the host's 404 handler at `404.html`.
+Deployed on GitHub Pages at [pablowib.github.io/Moon-Gallery](https://pablowib.github.io/Moon-Gallery). Static: upload the repository root as-is, with no build command and no output directory. Point the host's 404 handler at `404.html`.
 
 ## Author
 

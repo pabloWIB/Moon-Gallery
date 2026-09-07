@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://moongallery.wib.digital/sitemap.xml
+Sitemap: https://pablowib.github.io/Moon-Gallery/sitemap.xml
